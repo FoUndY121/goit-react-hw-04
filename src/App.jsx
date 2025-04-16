@@ -3,20 +3,20 @@ import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import ImageGallery from "./components/ImageGallary/ImageGallery.jsx";
 import { FetchData } from "./services/api.js";
-import LoadMoreBtn from "./components/LoadMoreBth/LoadMoreBth.jsx"; // виправлена назва
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.jsx";
 import toast from "react-hot-toast";
-import ImageModal from "./services/ImageModal.jsx"; // модалка
+import ImageModal from "./components/ImageModal/ImageModal.jsx";
 
 function App() {
     const [images, setImages] = useState([]);
-    const [page, setPage] = useState(1); // починаємо з 1
+    const [page, setPage] = useState(1);
     const [query, setQuery] = useState('');
     const [isError, setIsError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
-        if (!query.trim()) return; // 👉 не відправляти запит, якщо порожній рядок
+        if (!query.trim()) return;
 
         const getData = async () => {
             try {
@@ -51,6 +51,7 @@ function App() {
         setSelectedImage(image);
     };
 
+
     const handleCloseModal = () => {
         setSelectedImage(null);
     };
@@ -64,7 +65,9 @@ function App() {
             {!loading && images.length > 0 && (
                 <LoadMoreBtn loadmore={() => setPage(prev => prev + 1)} />
             )}
-            {selectedImage && <ImageModal image={selectedImage} onClose={handleCloseModal} />}
+            {selectedImage && (
+                <ImageModal key={selectedImage.id} image={selectedImage} onClose={handleCloseModal} />
+            )}
         </>
     );
 }

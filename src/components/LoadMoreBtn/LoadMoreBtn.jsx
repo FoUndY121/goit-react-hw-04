@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LoadMoreBth({loadmore}) {
+function LoadMoreBtn({loadmore}) {
     return (
         <>
         <button onClick={loadmore}>LoadMore</button>
@@ -8,4 +8,4 @@ function LoadMoreBth({loadmore}) {
     )
 }
 
-export default LoadMoreBth
+export default LoadMoreBtn
