@@ -1,20 +1,16 @@
 import React from 'react';
 
-function ImageCart({ images, onImageClick }) {
+function ImageCard({ image, onImageClick }) {
     return (
-        <>
-            {images.map((item) => (
-                <li key={item.id} style={{ marginBottom: "20px" }}>
-                    <img
-                        src={item.urls.small}
-                        alt={item.alt_description || "Unsplash Image"}
-                        style={{ width: "200px", borderRadius: "8px", cursor: "pointer" }}
-                        onClick={() => onImageClick(item)} // 👈 добавляем клик
-                    />
-                </li>
-            ))}
-        </>
+        <li style={{ marginBottom: "20px" }}>
+            <img
+                src={image.urls.small}
+                alt={image.alt_description || "Unsplash Image"}
+                style={{ width: "200px", borderRadius: "8px", cursor: "pointer" }}
+                onClick={() => onImageClick(image)}
+            />
+        </li>
     );
 }
 
-export default ImageCart;
+export default ImageCard;
